@@ -1,9 +1,12 @@
 import json
+import use
 
 def classification(event, context):
+
+    
+
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
-        "input": event
     }
 
     response = {

@@ -1,3 +1,4 @@
 .serverless
 model
 weights
+node_modules

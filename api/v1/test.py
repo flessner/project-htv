@@ -17,8 +17,8 @@ from sklearn.model_selection import train_test_split
 
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 train = pd.read_csv('./data.csv')
-desired_size = 368
-image_path = './test/test.jpg'
+desired_size = 400
+image_path = './tmp/test.jpg'
 
 im = Image.open(image_path)
 old_size = im.size
@@ -30,7 +30,7 @@ im = im.resize(new_size, Image.ANTIALIAS)
 new_im = Image.new("RGB", (desired_size, desired_size))
 new_im.paste(im, ((desired_size-new_size[0])//2, (desired_size-new_size[1])//2))
 
-new_im.save('./test/formatted.jpg')
+new_im.save('./tmp/formatted.jpg')
 
 img = image.load_img('./test/formatted.jpg',target_size=(400,400,3))
 img = image.img_to_array(img)

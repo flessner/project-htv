@@ -1,5 +1,6 @@
 app: htv
-service: htv-api-v1
+org: taftouch
+service: api-v1
 provider:
   name: aws
   runtime: python3.8
@@ -12,9 +13,26 @@ package:
     - train.py
 
 functions:
-  hello:
+  classify:
     handler: handler.classification
-    event: 
+    memorySize: 2048
+    timeout: 16
+    events: 
       - httpApi:
           method: GET
           path: /v1/img/classify-3
+
+custom:
+  s3Sync:
+    - bucketName: ${opt:service}-${opt:stage}-model 
+      localDir: /save
+
+plugins:
+  - serverless-s3-sync
+
+resources:
+  Resources:
+    AssetsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${opt:service}-${opt:stage}-model 

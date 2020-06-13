@@ -1,9 +1,12 @@
 {
   "name": "htv-v1",
   "version": "1.0.0",
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {
-    "serverless": "1.72.0"
+    "serverless": "1.72.0",
+    "serverless-s3-sync": "^1.14.3"
+  },
+  "dependencies": {
+
   }
 }
