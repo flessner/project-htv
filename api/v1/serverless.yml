@@ -25,7 +25,7 @@ functions:
 
 custom:
   s3Sync:
-    - bucketName: ${opt:service}-${opt:stage}-model 
+    - bucketName: htv-api-v1-${opt:stage}-model 
       localDir: /save
 
 plugins:
@@ -36,4 +36,4 @@ resources:
     AssetsBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${opt:service}-${opt:stage}-model 
+        BucketName: htv-api-v1-${opt:stage}-model 
