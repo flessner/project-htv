@@ -36,4 +36,4 @@ resources:
     AssetsBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: htv-api-v1-model-${opt:stage} 
+        BucketName: htv-api-v1-model-${opt:stage}
