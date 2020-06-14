@@ -15,8 +15,9 @@ from keras.utils import to_categorical
 from keras.preprocessing import image
 from sklearn.model_selection import train_test_split
 
-print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+tags = ['sk-eisen-nickel', 'nachverzinnt', 'sk-kupfer']
 train = pd.read_csv('./data.csv')
+print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 desired_size = 400
 image_path = './tmp/test.jpg'
 
@@ -32,12 +33,14 @@ new_im.paste(im, ((desired_size-new_size[0])//2, (desired_size-new_size[1])//2))
 
 new_im.save('./tmp/formatted.jpg')
 
-img = image.load_img('./test/formatted.jpg',target_size=(400,400,3))
+img = image.load_img('./tmp/formatted.jpg',target_size=(400,400,3))
 img = image.img_to_array(img)
 img = img/255
 
-loaded_model = tf.keras.models.load_model('./model')
+loaded_model = tf.keras.models.load_model('./save/model')
 
 classes = np.array(train.columns[2:])
 probe = loaded_model.predict(img.reshape(1,400,400,3))
-print(probe)
+
+for i in range(len(probe[0])):
+    print(str(tags[i]) + ': ' + str(float(probe[0][i])))
