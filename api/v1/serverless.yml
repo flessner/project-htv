@@ -1,10 +1,21 @@
 app: htv
 org: taftouch
 service: htv-api-v1
+
 provider:
   name: aws
+  stage: prod
   runtime: python3.8
   region: eu-west-1
+
+  apiKeys:
+    - devApiKey
+    - htvApiKey
+  usagePlan:
+    quota:
+      limit: 100000
+      offset: 1
+      period: MONTH
 
 package:
   exclude:
@@ -19,21 +30,24 @@ functions:
     memorySize: 2048
     timeout: 16
     events: 
-      - httpApi:
+      - http:
           method: GET
-          path: /v1/img/classify-3
+          path: /img/classify-3
 
 custom:
+  vars:
+    s3-model: htv-api-models
   s3Sync:
-    - bucketName: htv-api-v1-model-${opt:stage} 
+    - bucketName: ${self:custom.vars.s3-model}
       localDir: /save
+      bucketPrefix: /v1/c3
 
 plugins:
   - serverless-s3-sync
 
 resources:
   Resources:
-    AssetsBucket:
+    ModelBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: htv-api-v1-model-${opt:stage}
+        BucketName: ${self:custom.vars.s3-model}

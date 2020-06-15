@@ -2,6 +2,7 @@ import tensorflow as tf
 
 import keras
 import image
+import time
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -46,4 +47,4 @@ model.add(Dense(3, activation='sigmoid'))
 model.compile(optimizer='RMSprop', loss='binary_crossentropy', metrics=['accuracy'])
 model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), batch_size=64)
 
-model.save('./save/model')
+model.save('./save/model-' + str(int(time.time())))

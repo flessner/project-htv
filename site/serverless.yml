@@ -1,0 +1,99 @@
+app: htv
+org: taftouch
+service: htv-site
+
+provider:
+  name: aws
+  stage: prod
+  region: eu-west-1
+
+custom:
+  vars:
+    s3-site: htv-static-website
+  s3Sync:
+    - bucketName: ${self:custom.vars.s3-site}
+      localDir: /static
+
+resources:
+  Resources:
+    HTVStaticSiteBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.vars.s3-site}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: error.html
+    HTVBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: HTVStaticSiteBucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource: 
+                Fn::Join: [
+                  "", [
+                    "arn:aws:s3:::",
+                    { "Ref": "HTVStaticSiteBucket" },
+                    "/*"
+                  ]
+                ]
+    HTVCloudFront:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - DomainName:
+                Fn::Join: [
+                  "", [
+                    { "Ref": "HTVStaticSiteBucket" },
+                    ".s3.amazonaws.com"
+                  ]
+                ]
+              Id: HTVStaticSite
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: https-only
+          Enabled: 'true'
+          Aliases:
+           - htv.flessner.io
+          DefaultRootObject: index.html
+          CustomErrorResponses:
+            - ErrorCode: 404
+              ResponseCode: 200
+              ResponsePagePath: /index.html
+          ViewerCertificate:
+            AcmCertificateArn: arn:aws:acm:us-east-1:760004362090:certificate/743d01b6-235c-43f2-8132-448c79c85190
+            SslSupportMethod: sni-only
+          DefaultCacheBehavior:
+            AllowedMethods:
+              - DELETE
+              - GET
+              - HEAD
+              - OPTIONS
+              - PATCH
+              - POST
+              - PUT
+            TargetOriginId: HTVStaticSite
+            ForwardedValues:
+              QueryString: 'false'
+              Cookies:
+                Forward: none
+            ViewerProtocolPolicy: redirect-to-https
+  Outputs:
+    HTVBucketOutput:
+      Value:
+        'Ref': HTVStaticSiteBucket
+    HTVCloudFrontOutput:
+      Value:
+        'Fn::GetAtt': [ HTVCloudFront, DomainName ]
+
+plugins:
+  - serverless-s3-sync

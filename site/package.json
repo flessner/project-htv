@@ -1,11 +1,8 @@
 {
-  "name": "htv-api-v1",
+  "name": "htv-site",
   "version": "1.0.0",
   "devDependencies": {
     "serverless": "1.72.0",
     "serverless-s3-sync": "^1.14.3"
-  },
-  "dependencies": {
-    
   }
 }
