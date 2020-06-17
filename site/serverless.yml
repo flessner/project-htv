@@ -65,6 +65,7 @@ resources:
           Aliases:
            - htv.flessner.io
           PriceClass: PriceClass_100
+          HttpVersion: http2
           DefaultRootObject: index.html
           CustomErrorResponses:
             - ErrorCode: 404
@@ -72,6 +73,7 @@ resources:
               ResponsePagePath: /index.html
           ViewerCertificate:
             AcmCertificateArn: arn:aws:acm:us-east-1:760004362090:certificate/743d01b6-235c-43f2-8132-448c79c85190
+            MinimumProtocolVersion: TLSv1.2_2018
             SslSupportMethod: sni-only
           DefaultCacheBehavior:
             Compress: true

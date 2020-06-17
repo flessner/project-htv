@@ -200,6 +200,9 @@ var app = (function () {
     function claim_space(nodes) {
         return claim_text(nodes, ' ');
     }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
     function toggle_class(element, name, toggle) {
         element.classList[toggle ? 'add' : 'remove'](name);
     }
@@ -3131,8 +3134,9 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (35:4) {#each _links as [path, name]}
+    // (47:6) {#each _links as [path, name]}
     function create_each_block$1(ctx) {
+    	let li;
     	let a;
     	let t0_value = /*name*/ ctx[4] + "";
     	let t0;
@@ -3141,27 +3145,33 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			li = element("li");
     			a = element("a");
     			t0 = text(t0_value);
     			t1 = space();
     			this.h();
     		},
     		l: function claim(nodes) {
-    			a = claim_element(nodes, "A", { class: true, href: true });
+    			li = claim_element(nodes, "LI", {});
+    			var li_nodes = children(li);
+    			a = claim_element(li_nodes, "A", { class: true, href: true });
     			var a_nodes = children(a);
     			t0 = claim_text(a_nodes, t0_value);
     			t1 = claim_space(a_nodes);
     			a_nodes.forEach(detach_dev);
+    			li_nodes.forEach(detach_dev);
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(a, "class", "link svelte-i8v8x5");
+    			attr_dev(a, "class", "nav-link svelte-1h4hgso");
     			attr_dev(a, "href", a_href_value = /*$url*/ ctx[1](/*path*/ ctx[3]));
     			toggle_class(a, "active", /*$isActive*/ ctx[0](/*path*/ ctx[3]));
-    			add_location(a, file$1, 35, 6, 648);
+    			add_location(a, file$1, 47, 12, 909);
+    			add_location(li, file$1, 47, 8, 905);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, a, anchor);
+    			insert_dev(target, li, anchor);
+    			append_dev(li, a);
     			append_dev(a, t0);
     			append_dev(a, t1);
     		},
@@ -3175,7 +3185,7 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(a);
+    			if (detaching) detach_dev(li);
     		}
     	};
 
@@ -3183,7 +3193,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(35:4) {#each _links as [path, name]}",
+    		source: "(47:6) {#each _links as [path, name]}",
     		ctx
     	});
 
@@ -3192,7 +3202,12 @@ var app = (function () {
 
     function create_fragment$3(ctx) {
     	let aside;
+    	let nav;
     	let div;
+    	let img;
+    	let img_src_value;
+    	let t;
+    	let ul;
     	let each_value = /*_links*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -3204,7 +3219,11 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			aside = element("aside");
+    			nav = element("nav");
     			div = element("div");
+    			img = element("img");
+    			t = space();
+    			ul = element("ul");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
@@ -3215,29 +3234,49 @@ var app = (function () {
     		l: function claim(nodes) {
     			aside = claim_element(nodes, "ASIDE", { class: true });
     			var aside_nodes = children(aside);
-    			div = claim_element(aside_nodes, "DIV", { class: true });
+    			nav = claim_element(aside_nodes, "NAV", { class: true });
+    			var nav_nodes = children(nav);
+    			div = claim_element(nav_nodes, "DIV", { class: true });
     			var div_nodes = children(div);
+    			img = claim_element(div_nodes, "IMG", { alt: true, src: true, style: true });
+    			div_nodes.forEach(detach_dev);
+    			t = claim_space(nav_nodes);
+    			ul = claim_element(nav_nodes, "UL", { class: true });
+    			var ul_nodes = children(ul);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].l(div_nodes);
+    				each_blocks[i].l(ul_nodes);
     			}
 
-    			div_nodes.forEach(detach_dev);
+    			ul_nodes.forEach(detach_dev);
+    			nav_nodes.forEach(detach_dev);
     			aside_nodes.forEach(detach_dev);
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div, "class", "nav svelte-i8v8x5");
-    			add_location(div, file$1, 33, 2, 587);
-    			attr_dev(aside, "class", "svelte-i8v8x5");
-    			add_location(aside, file$1, 32, 0, 576);
+    			attr_dev(img, "alt", "Flessner");
+    			if (img.src !== (img_src_value = "assets/common/logo.svg")) attr_dev(img, "src", img_src_value);
+    			set_style(img, "height", "40px");
+    			add_location(img, file$1, 43, 6, 746);
+    			attr_dev(div, "class", "nav-logo svelte-1h4hgso");
+    			add_location(div, file$1, 42, 4, 716);
+    			attr_dev(ul, "class", "nav-links svelte-1h4hgso");
+    			add_location(ul, file$1, 45, 4, 835);
+    			attr_dev(nav, "class", "nav svelte-1h4hgso");
+    			add_location(nav, file$1, 41, 2, 693);
+    			attr_dev(aside, "class", "svelte-1h4hgso");
+    			add_location(aside, file$1, 40, 0, 682);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, aside, anchor);
-    			append_dev(aside, div);
+    			append_dev(aside, nav);
+    			append_dev(nav, div);
+    			append_dev(div, img);
+    			append_dev(nav, t);
+    			append_dev(nav, ul);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div, null);
+    				each_blocks[i].m(ul, null);
     			}
     		},
     		p: function update(ctx, [dirty]) {
@@ -3254,7 +3293,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div, null);
+    						each_blocks[i].m(ul, null);
     					}
     				}
 
@@ -3291,7 +3330,7 @@ var app = (function () {
     	component_subscribe($$self, isActive, $$value => $$invalidate(0, $isActive = $$value));
     	validate_store(url, "url");
     	component_subscribe($$self, url, $$value => $$invalidate(1, $url = $$value));
-    	const _links = [["/index", "Home"], ["/models", "Models"], ["/reset", "Reset"]];
+    	const _links = [["/index", "Home"], ["/models", "Models"]];
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
