@@ -1,9 +1,9 @@
 <script>
   import { url, isActive } from "@sveltech/routify";
   const _links = [
-    ["./index", "Home"],
-    ["./modal", "Modal"],
-    ["./reset", "Reset"],
+    ["/index", "Home"],
+    ["/models", "Models"],
+    ["/reset", "Reset"],
   ];
 </script>
 
@@ -12,10 +12,10 @@
     text-align: center;
   }
   .nav {
-    margin: 16px;
+    margin: 0;
     padding: 16px;
-    border-radius: 4px;
-    background: white;
+    width: 100%;
+    background: rgb(43, 43, 43);
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.075);
     display: inline-block;
   }
@@ -23,6 +23,7 @@
     padding: 0 16px;
     width: 64px;
     display: inline-block;
+    color: white;
   }
   .active {
     font-weight: bold;
