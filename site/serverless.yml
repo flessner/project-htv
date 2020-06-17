@@ -12,7 +12,7 @@ custom:
     s3-site: htv-static-website
   s3Sync:
     - bucketName: ${self:custom.vars.s3-site}
-      localDir: /static
+      localDir: /public
 
 resources:
   Resources:
