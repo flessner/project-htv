@@ -12,7 +12,7 @@ custom:
     s3-site: htv-static-website
   s3Sync:
     - bucketName: ${self:custom.vars.s3-site}
-      localDir: /public
+      localDir: /dist
 
 resources:
   Resources:
@@ -74,6 +74,8 @@ resources:
             AcmCertificateArn: arn:aws:acm:us-east-1:760004362090:certificate/743d01b6-235c-43f2-8132-448c79c85190
             SslSupportMethod: sni-only
           DefaultCacheBehavior:
+            Compress: true
+            DefaultTTL: 600
             AllowedMethods:
               - DELETE
               - GET

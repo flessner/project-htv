@@ -1,14 +1,6 @@
 <script>
-	import Link from './Link.svelte';
-	import Route from './Route.svelte';
+  import { Router } from "@sveltech/routify";
+  import { routes } from "@sveltech/routify/tmp/routes";
 </script>
 
-<style>
-</style>
-
-<!-- Navigation goes here -->
-<Link page={{path: '/', name: 'Home'}} />
-<Link page={{path: '/about', name: 'About'}} />
-
-<!-- Main container goes here -->
-<Route />
+<Router {routes} />
