@@ -1,20 +1,11 @@
 import tensorflow as tf
+from tensorflow import keras
 
-import keras
-import image
 import glob
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
-from tqdm import tqdm
 from PIL import Image, ImageOps
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.utils import to_categorical
-from keras.preprocessing import image
-from sklearn.model_selection import train_test_split
 
 # List current models & search for newest
 models = glob.glob("./save/*")
@@ -44,12 +35,12 @@ new_im.paste(im, ((desired_size-new_size[0])//2, (desired_size-new_size[1])//2))
 new_im.save('./tmp/formatted.jpg')
 
 # Loading image from tmp
-img = image.load_img('./tmp/formatted.jpg',target_size=(400,400,3))
-img = image.img_to_array(img)
+img = keras.preprocessing.image.load_img('./tmp/formatted.jpg',target_size=(400,400,3))
+img = keras.preprocessing.image.img_to_array(img)
 img = img/255
 
 # Making prediction from model
-loaded_model = tf.keras.models.load_model('./save/model-' + str(latest_model))
+loaded_model = keras.models.load_model('./save/model-' + str(latest_model))
 classes = np.array(train.columns[2:])
 probe = loaded_model.predict(img.reshape(1,400,400,3))
 

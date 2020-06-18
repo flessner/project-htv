@@ -3,3 +3,4 @@ model-*
 weights
 node_modules
 .vscode
+vendor

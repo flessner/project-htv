@@ -27,7 +27,7 @@ package:
 functions:
   classify:
     handler: handler.classification
-    memorySize: 2048
+    memorySize: 3008
     timeout: 16
     events: 
       - http:
