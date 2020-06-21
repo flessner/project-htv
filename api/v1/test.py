@@ -8,7 +8,7 @@ import pandas as pd
 from PIL import Image, ImageOps
 
 # List current models & search for newest
-models = glob.glob("./save/*")
+models = glob.glob("./save/*.tf")
 latest_model = 0
 for i in models:
     i = int(i[i.rfind('-') + 1:])

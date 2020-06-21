@@ -1,11 +1,12 @@
 import tensorflow as tf
-
 import keras
+
+import os, glob, shutil
+
 import image
 import time
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 from tqdm import tqdm
 from keras.models import Sequential
@@ -15,9 +16,12 @@ from keras.utils import to_categorical
 from keras.preprocessing import image
 from sklearn.model_selection import train_test_split
 
-print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+# DATA VARIABLES
 data_loc = 'D:/Media/htv-sorted/resized/'
 train = pd.read_csv('./data.csv')
+
+print('Removing old contents')
+shutil.rmtree('./save')
 
 train_image = []
 for i in tqdm(range(train.shape[0])):
@@ -47,4 +51,14 @@ model.add(Dense(3, activation='sigmoid'))
 model.compile(optimizer='RMSprop', loss='binary_crossentropy', metrics=['accuracy'])
 model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), batch_size=64)
 
-model.save('./save/model-' + str(int(time.time())))
+print('Saving model')
+model_save_dir = './save/model-' + str(int(time.time()))
+model_save_dir_lite = './save/model-' + str(int(time.time())) + '.tflite'
+model.save(model_save_dir)
+
+print('Converting to tflite model')
+converter = tf.lite.TFLiteConverter.from_saved_model(model_save_dir)
+tflite_model = converter.convert()
+open(model_save_dir_lite, "wb").write(tflite_model)
+
+shutil.rmtree(model_save_dir)
