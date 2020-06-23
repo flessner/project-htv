@@ -1,9 +1,11 @@
 <script>
     import { url } from '@sveltech/routify'
     import NavBar from './../_components/navBar.svelte'
+    import LoginBar from './../_components/loginBar.svelte'
 </script>
 
-<NavBar/>
+<NavBar />
+<LoginBar />
 
 <h1>Api Models</h1>
 
@@ -39,7 +41,7 @@ h2 {
     border-radius: 6px;
     text-align: center;
     color: white;
-    background: rgb(39, 39, 39);
+    background: rgb(40, 40, 40);
 }
 
 h3{
@@ -54,7 +56,7 @@ h3{
     padding-bottom: 6px; 
     border-radius: 6px;
     color: white;
-    background: rgb(39, 39, 39);
+    background: rgb(40, 40, 40);
 }
 
 .model-description tr th {

@@ -1,2 +1,2 @@
-export{G as default}from"./main-75c78758.js";
+export{J as default}from"./main-b0d70dcc.js";
 //# sourceMappingURL=main.js.map

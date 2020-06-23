@@ -1,6 +1,6 @@
-.serverless
-model-*
-weights
 node_modules
+.serverless
 .vscode
-vendor
+
+dist
+save
