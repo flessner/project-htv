@@ -5,11 +5,9 @@
     let files;
     let image_queue = [];
 
-    function previewFiles() {
-        var preview = document.querySelector('#preview');
-        preview.innerHTML = '';
+    function setFiles() {
         image_queue = [];
-        console.log('Triggered Preview update')
+        console.log('Triggered Queue update')
 
         async function readAndPreview(file) {
             var reader = new FileReader();
@@ -31,7 +29,7 @@
 
 <h1>K1006</h1>
 <div class=>
-    <input  type='file' accept="image/jpeg, image/png" bind:files on:change={previewFiles} multiple>
+    <input  type='file' accept="image/jpeg, image/png" bind:files on:change={setFiles} multiple>
 </div>
 
 <style>
