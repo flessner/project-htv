@@ -7,7 +7,7 @@
 <NavBar />
 <LoginBar />
 
-<h1>Api Models</h1>
+<h1>API Models</h1>
 
 <h2>V1 - June 2020</h2>
 <div class='model-container'>
@@ -19,13 +19,14 @@
         </tr>
         <tr>
             <th>Input</th>
-            <td>Matrix: 400*400*3 skaliert auf 0-1</td>
+            <td>base64 PNG/JPEG</td>
         </tr>
         <tr>
             <th>Output</th>
-            <td>Vektor: 3 skaliert auf 0-1</td>
+            <td>3 Arten in JSON skaliert auf 0 - 1</td>
         </tr>
     </table>
+    <div><a href={$url('/models/v1/k1006')}><b>Test</b></a></div>
 </div>
 
 <style>
@@ -59,8 +60,21 @@ h3{
     background: rgb(40, 40, 40);
 }
 
+.model-container div {
+    margin-top: 10px;
+    margin-bottom: 4px;
+    padding: 3px;
+    width: 80px;
+    text-align: center;
+    border-radius: 2px;
+    background: #FFF;
+}
+
+.model-container div a {
+    color: rgb(40, 40, 40);
+}
+
 .model-description tr th {
     padding-right: 16px;
 }
-
 </style>

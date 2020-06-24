@@ -3,19 +3,15 @@
     import { api_key } from './../_store'
 </script>
 
-{#if $api_key != ''}
-    <div class='footer-login'>
+<div class='footer-login'>
+    {#if $api_key != ''}
         <p>Logged in as: { $api_key }</p>
         <a href={$url('/login')}><i>Change Key</i></a>
-    </div>
-{/if}
-
-{#if $api_key == ''}
-    <div class='footer-login'>
+    {:else if $api_key == ''}
         <p>You are currently not logged in!</p>
         <a href={$url('/login')}><i>Log In</i></a>
-    </div>
-{/if}
+    {/if}
+</div>
 
 <style>
 .footer-login {
