@@ -1,7 +1,3 @@
-<svelte:head>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-</svelte:head>
-
 <script>
     import NavBar from './../../_components/navBar.svelte'
     import LoginBar from './../../_components/loginBar.svelte'
