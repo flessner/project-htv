@@ -26,7 +26,7 @@
             <td>3 Arten in JSON skaliert auf 0 - 1</td>
         </tr>
     </table>
-    <div><a href={$url('/models/v1/k1006')}><b>Test</b></a></div>
+    <div><a href={$url('/models/k1006')}><b>Test</b></a></div>
 </div>
 
 <style>

@@ -8,7 +8,7 @@
 
 <nav class='nav'>
   <div class='nav-logo'>
-    <img alt='Flessner' src='assets/common/logo.svg' style='height: 30px;'>
+    <img alt='Flessner' src='/assets/common/logo.svg' style='height: 30px;'>
   </div>
   <ul class='nav-links'>
     {#each _links as [path, name]}

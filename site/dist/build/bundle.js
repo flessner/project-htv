@@ -3026,6 +3026,31 @@ var app = (function () {
               "component": () => Promise.resolve().then(function () { return index$1; }).then(m => m.default)
             },
             {
+              "isFile": true,
+              "isDir": false,
+              "file": "k1006.svelte",
+              "filepath": "/models/k1006.svelte",
+              "name": "k1006",
+              "ext": "svelte",
+              "badExt": false,
+              "absolutePath": "D:/Applications/htv/site/src/pages/models/k1006.svelte",
+              "isLayout": false,
+              "isReset": false,
+              "isIndex": false,
+              "isFallback": false,
+              "isPage": true,
+              "ownMeta": {},
+              "meta": {
+                "preload": false,
+                "precache-order": false,
+                "precache-proximity": true,
+                "recursive": true
+              },
+              "path": "/models/k1006",
+              "id": "_models_k1006",
+              "component": () => Promise.resolve().then(function () { return k1006; }).then(m => m.default)
+            },
+            {
               "isFile": false,
               "isDir": true,
               "file": "v1",
@@ -3034,33 +3059,7 @@ var app = (function () {
               "ext": "",
               "badExt": false,
               "absolutePath": "D:/Applications/htv/site/src/pages/models/v1",
-              "children": [
-                {
-                  "isFile": true,
-                  "isDir": false,
-                  "file": "k1006.svelte",
-                  "filepath": "/models/v1/k1006.svelte",
-                  "name": "k1006",
-                  "ext": "svelte",
-                  "badExt": false,
-                  "absolutePath": "D:/Applications/htv/site/src/pages/models/v1/k1006.svelte",
-                  "isLayout": false,
-                  "isReset": false,
-                  "isIndex": false,
-                  "isFallback": false,
-                  "isPage": true,
-                  "ownMeta": {},
-                  "meta": {
-                    "preload": false,
-                    "precache-order": false,
-                    "precache-proximity": true,
-                    "recursive": true
-                  },
-                  "path": "/models/v1/k1006",
-                  "id": "_models_v1_k1006",
-                  "component": () => Promise.resolve().then(function () { return k1006; }).then(m => m.default)
-                }
-              ],
+              "children": [],
               "isLayout": false,
               "isReset": false,
               "isIndex": false,
@@ -3272,8 +3271,8 @@ var app = (function () {
     			attr_dev(a, "class", "nav-link svelte-1ybvqr5");
     			attr_dev(a, "href", a_href_value = /*$url*/ ctx[1](/*path*/ ctx[3]));
     			toggle_class(a, "active", /*$isActive*/ ctx[0](/*path*/ ctx[3]));
-    			add_location(a, file$1, 14, 10, 359);
-    			add_location(li, file$1, 14, 6, 355);
+    			add_location(a, file$1, 14, 10, 360);
+    			add_location(li, file$1, 14, 6, 356);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -3356,13 +3355,13 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(img, "alt", "Flessner");
-    			if (img.src !== (img_src_value = "assets/common/logo.svg")) attr_dev(img, "src", img_src_value);
+    			if (img.src !== (img_src_value = "/assets/common/logo.svg")) attr_dev(img, "src", img_src_value);
     			set_style(img, "height", "30px");
     			add_location(img, file$1, 10, 4, 204);
     			attr_dev(div, "class", "nav-logo svelte-1ybvqr5");
     			add_location(div, file$1, 9, 2, 176);
     			attr_dev(ul, "class", "nav-links svelte-1ybvqr5");
-    			add_location(ul, file$1, 12, 2, 289);
+    			add_location(ul, file$1, 12, 2, 290);
     			attr_dev(nav, "class", "nav svelte-1ybvqr5");
     			add_location(nav, file$1, 8, 0, 155);
     		},
@@ -4369,8 +4368,8 @@ var app = (function () {
     			add_location(tr2, file$5, 23, 8, 530);
     			attr_dev(table, "class", "model-description svelte-12mrex5");
     			add_location(table, file$5, 14, 4, 311);
-    			add_location(b, file$5, 28, 44, 690);
-    			attr_dev(a, "href", a_href_value = /*$url*/ ctx[0]("/models/v1/k1006"));
+    			add_location(b, file$5, 28, 41, 687);
+    			attr_dev(a, "href", a_href_value = /*$url*/ ctx[0]("/models/k1006"));
     			attr_dev(a, "class", "svelte-12mrex5");
     			add_location(a, file$5, 28, 9, 655);
     			attr_dev(div0, "class", "svelte-12mrex5");
@@ -4422,7 +4421,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*$url*/ 1 && a_href_value !== (a_href_value = /*$url*/ ctx[0]("/models/v1/k1006"))) {
+    			if (!current || dirty & /*$url*/ 1 && a_href_value !== (a_href_value = /*$url*/ ctx[0]("/models/k1006"))) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
@@ -4496,10 +4495,10 @@ var app = (function () {
         'default': Models
     });
 
-    /* src\pages\models\v1\k1006.svelte generated by Svelte v3.23.2 */
+    /* src\pages\models\k1006.svelte generated by Svelte v3.23.2 */
 
     const { console: console_1 } = globals;
-    const file$6 = "src\\pages\\models\\v1\\k1006.svelte";
+    const file$6 = "src\\pages\\models\\k1006.svelte";
 
     function create_fragment$8(ctx) {
     	let navbar;
@@ -4548,13 +4547,13 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(h1, "class", "svelte-79rhta");
-    			add_location(h1, file$6, 29, 0, 745);
+    			add_location(h1, file$6, 29, 0, 739);
     			attr_dev(input, "type", "file");
     			attr_dev(input, "accept", "image/jpeg, image/png");
     			input.multiple = true;
-    			add_location(input, file$6, 31, 4, 779);
+    			add_location(input, file$6, 31, 4, 773);
     			attr_dev(div, "class", "");
-    			add_location(div, file$6, 30, 0, 761);
+    			add_location(div, file$6, 30, 0, 755);
     		},
     		m: function mount(target, anchor) {
     			mount_component(navbar, target, anchor);

@@ -1,6 +1,6 @@
 <script>
-    import NavBar from './../../_components/navBar.svelte'
-    import LoginBar from './../../_components/loginBar.svelte'
+    import NavBar from './../_components/navBar.svelte'
+    import LoginBar from './../_components/loginBar.svelte'
 
     let files;
     let image_queue = [];
