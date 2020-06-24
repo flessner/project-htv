@@ -1,15 +1,6 @@
-'use strict';
+Response = require('./../smarch-lib');
 
 module.exports.classify = async event => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
-};
+  
+  return Response._200({'message':'Go Serverless!'});
+}
