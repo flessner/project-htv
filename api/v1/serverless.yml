@@ -20,7 +20,6 @@ provider:
 package:
   exclude:
     - save/**
-    - test/**
     - test.py
     - train.py
 

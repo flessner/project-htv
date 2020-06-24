@@ -27,6 +27,5 @@
     "svelte": "^3.20.1"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "^2.0.1"
   }
 }

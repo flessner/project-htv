@@ -2,9 +2,11 @@
   "name": "htv-api-v1",
   "version": "1.0.0",
   "devDependencies": {
-    "serverless": "1.72.0",
     "serverless-s3-sync": "^1.14.3"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^2.0.1",
+    "jimp": "^0.13.0",
+    "smarch-lib-responses": "file:../smarch-lib/responses"
   }
 }
