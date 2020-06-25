@@ -1,10 +1,17 @@
+AWS = require('aws-sdk');
+s3 = new AWS.S3();
+
 Response = require('smarch-lib-responses');
 tf = require('@tensorflow/tfjs');
 Jimp = require('jimp');
 
 module.exports.k1006 = async event => {
+  s3.listObjectsV2({Bucket: process.env.S3_MODELS, Prefix: 'v1/k1006'}, function(e, data) {
+    if (e) console.error(e);
+    else console.log(data);
+  });
+
   let base64 = '';
-  console.log('Recieved the base 64 image.');
   try {
     base64 = JSON.stringify(JSON.parse(event.body).data.image);
     console.log('Recieved the base 64 image.');
@@ -22,7 +29,7 @@ module.exports.k1006 = async event => {
   }
 
   try {
-    Jimp.read(Buffer.from(base64.replace(/data:image\/(png|jpg|jpeg);base64,/, ''), 'base64'))
+    Jimp.read(Buffer.from(base64.replace(/data:image\/(png|jpg|jpeg|gif);base64,/, ''), 'base64'))
     .then(image => {
       image.contain(400, 400);
       image.write('image.png');
@@ -34,6 +41,7 @@ module.exports.k1006 = async event => {
   }
 
   return Response._200({
-    "message": "Go Serverless!"
+    "message": "Go Serverless!",
+    "data": {}
   });
 }

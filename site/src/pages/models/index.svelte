@@ -19,11 +19,11 @@
         </tr>
         <tr>
             <th>Input</th>
-            <td>base64 PNG/JPEG</td>
+            <td>base64 PNG/JPEG/GIF</td>
         </tr>
         <tr>
             <th>Output</th>
-            <td>3 Arten in JSON skaliert auf 0 - 1</td>
+            <td>Arten in JSON skaliert auf 0 - 1</td>
         </tr>
     </table>
     <div><a href={$url('/models/k1006')}><b>Test</b></a></div>

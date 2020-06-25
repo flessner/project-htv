@@ -7,8 +7,17 @@ provider:
   stage: prod
   runtime: nodejs12.x
   region: eu-west-1
-  logs:
-    httpApi: true
+  environment:
+    S3_MODELS: ${self:custom.vars.s3-model}
+  iamRoleStatements:
+    -  Effect: "Allow"
+       Action:
+         - "s3:PutObject"
+       Resource:
+         Fn::Join:
+           - ""
+           - - "arn:aws:s3:::"
+             - Ref: ModelBucket
 
 package:
   exclude:
@@ -32,8 +41,8 @@ custom:
     s3-model: htv-api-models
   s3Sync:
     - bucketName: ${self:custom.vars.s3-model}
-      localDir: /save
-      bucketPrefix: /v1/k1006
+      localDir: save
+      bucketPrefix: v1/k1006
 
 plugins:
   - serverless-s3-sync
