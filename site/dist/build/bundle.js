@@ -3049,30 +3049,6 @@ var app = (function () {
               "path": "/models/k1006",
               "id": "_models_k1006",
               "component": () => Promise.resolve().then(function () { return k1006; }).then(m => m.default)
-            },
-            {
-              "isFile": false,
-              "isDir": true,
-              "file": "v1",
-              "filepath": "/models/v1",
-              "name": "v1",
-              "ext": "",
-              "badExt": false,
-              "absolutePath": "D:/Applications/htv/site/src/pages/models/v1",
-              "children": [],
-              "isLayout": false,
-              "isReset": false,
-              "isIndex": false,
-              "isFallback": false,
-              "isPage": false,
-              "ownMeta": {},
-              "meta": {
-                "preload": false,
-                "precache-order": false,
-                "precache-proximity": true,
-                "recursive": true
-              },
-              "path": "/models/v1"
             }
           ],
           "isLayout": false,
