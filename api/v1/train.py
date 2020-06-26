@@ -52,8 +52,8 @@ model.compile(optimizer='RMSprop', loss='binary_crossentropy', metrics=['accurac
 model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), batch_size=64)
 
 print('Saving model')
-model_save_dir = './save/model-' + str(int(time.time()))
-model_save_dir_lite = './save/model-' + str(int(time.time())) + '.tflite'
+model_save_dir = './save/model-k1006'
+model_save_dir_lite = './save/model-k1006.tflite'
 model.save(model_save_dir)
 
 print('Converting to tflite model')

@@ -12,12 +12,12 @@ provider:
   iamRoleStatements:
     -  Effect: "Allow"
        Action:
-         - "s3:PutObject"
+         - "s3:GetObject"
        Resource:
-         Fn::Join:
+        Fn::Join:
            - ""
            - - "arn:aws:s3:::"
-             - Ref: ModelBucket
+             - Ref: HTVModelBucket
 
 package:
   exclude:
@@ -42,14 +42,14 @@ custom:
   s3Sync:
     - bucketName: ${self:custom.vars.s3-model}
       localDir: save
-      bucketPrefix: v1/k1006
+      bucketPrefix: v1
 
 plugins:
   - serverless-s3-sync
 
 resources:
   Resources:
-    ModelBucket:
+    HTVModelBucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.vars.s3-model}
