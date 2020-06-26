@@ -12,12 +12,14 @@ provider:
   iamRoleStatements:
     -  Effect: "Allow"
        Action:
+         - "s3:ListBucket"
+         - "s3:GetBucketLocation"
+       Resource: arn:aws:s3:::${self:custom.vars.s3-model}
+    -  Effect: "Allow"
+       Action:
          - "s3:GetObject"
-       Resource:
-        Fn::Join:
-           - ""
-           - - "arn:aws:s3:::"
-             - Ref: HTVModelBucket
+         - "s3:GetObjectAcl"
+       Resource: arn:aws:s3:::${self:custom.vars.s3-model}/*
 
 package:
   exclude:
