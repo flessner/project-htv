@@ -1,4 +1,5 @@
 import tensorflow as tf
+import tensorflowjs as tfjs
 import keras
 
 import os, glob, shutil
@@ -16,12 +17,19 @@ from keras.utils import to_categorical
 from keras.preprocessing import image
 from sklearn.model_selection import train_test_split
 
+# TF INFO
+tf.get_logger().setLevel('INFO')
+print("Num GPUs:" + str(len(tf.config.list_physical_devices('GPU'))))
+
 # DATA VARIABLES
 data_loc = 'D:/Media/htv-sorted/resized/'
 train = pd.read_csv('./data.csv')
 
-print('Removing old contents')
-shutil.rmtree('./save')
+try:
+    print('Removing old contents')
+    shutil.rmtree('./save')
+except:
+    print("Couldn't delete ./save directroy!")
 
 train_image = []
 for i in tqdm(range(train.shape[0])):
@@ -53,12 +61,8 @@ model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), batch_s
 
 print('Saving model')
 model_save_dir = './save/model-k1006'
-model_save_dir_lite = './save/model-k1006.tflite'
-model.save(model_save_dir)
 
-print('Converting to tflite model')
-converter = tf.lite.TFLiteConverter.from_saved_model(model_save_dir)
-tflite_model = converter.convert()
-open(model_save_dir_lite, "wb").write(tflite_model)
+tfjs.converters.save_keras_model(model, model_save_dir)
+shutil.make_archive('./save/k1006', 'zip', model_save_dir)
 
 shutil.rmtree(model_save_dir)

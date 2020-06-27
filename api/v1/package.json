@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "^2.0.1",
+    "adm-zip": "^0.4.16",
+    "image-pixels": "^2.2.2",
     "jimp": "^0.13.0",
     "smarch-lib-responses": "file:../smarch-lib/responses"
   }
