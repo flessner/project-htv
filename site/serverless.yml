@@ -95,7 +95,7 @@ resources:
   Outputs:
     HTVBucketOutput:
       Value:
-        'Ref': HTVStaticSiteBucket
+        Ref: HTVStaticSiteBucket
     HTVCloudFrontOutput:
       Value:
         'Fn::GetAtt': [ HTVCloudFront, DomainName ]

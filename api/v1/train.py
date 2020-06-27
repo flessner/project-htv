@@ -60,9 +60,6 @@ model.compile(optimizer='RMSprop', loss='binary_crossentropy', metrics=['accurac
 model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), batch_size=64)
 
 print('Saving model')
-model_save_dir = './save/model-k1006'
+model_save_dir = './save/k1006'
 
 tfjs.converters.save_keras_model(model, model_save_dir)
-shutil.make_archive('./save/k1006', 'zip', model_save_dir)
-
-shutil.rmtree(model_save_dir)

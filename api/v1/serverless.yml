@@ -9,17 +9,7 @@ provider:
   region: eu-west-1
   environment:
     S3_MODELS: ${self:custom.vars.s3-model}
-  iamRoleStatements:
-    -  Effect: "Allow"
-       Action:
-         - "s3:ListBucket"
-         - "s3:GetBucketLocation"
-       Resource: arn:aws:s3:::${self:custom.vars.s3-model}
-    -  Effect: "Allow"
-       Action:
-         - "s3:GetObject"
-         - "s3:GetObjectAcl"
-       Resource: arn:aws:s3:::${self:custom.vars.s3-model}/*
+    S3_MODELS_URL: https://${self:custom.vars.s3-model}.s3-eu-west-1.amazonaws.com/v1/k1006/model.json
 
 package:
   exclude:
@@ -55,3 +45,18 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.vars.s3-model}
+        AccessControl: PublicRead
+    HTVModelBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: 
+          Ref: HTVModelBucket
+        PolicyDocument:
+          Statement: 
+            - Sid: PublicRead
+              Effect: Allow
+              Principal: "*"
+              Action: 
+                - s3:GetObject
+                - s3:GetObjectAcl
+              Resource: arn:aws:s3:::${self:custom.vars.s3-model}/*
