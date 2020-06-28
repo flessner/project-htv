@@ -27,5 +27,32 @@
         "!yml",
         "org"
     ],
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.ignoreWords": [
+        "a",
+        "bw",
+        "dst",
+        "dst qtr u tu ni oe lj syz ki n pc k uemxe a",
+        "esmovig",
+        "esmovig kaq mu uv bw qzv vu mdvdr w",
+        "k",
+        "kaq",
+        "ki",
+        "lj",
+        "mdvdr",
+        "mu",
+        "n",
+        "ni",
+        "oe",
+        "pc",
+        "qtr",
+        "qzv",
+        "syz",
+        "tu",
+        "u",
+        "uemxe",
+        "uv",
+        "vu",
+        "w"
+    ]
 }

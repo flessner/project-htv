@@ -10,6 +10,11 @@ provider:
   environment:
     S3_MODELS: ${self:custom.vars.s3-model}
     S3_MODELS_URL: https://${self:custom.vars.s3-model}.s3-eu-west-1.amazonaws.com/v1/k1006/model.json
+  apiKeys:
+    - name: htvAccessKey
+      value: EsmovigKaqMUUvBw475QzvVU95MdvdrW
+    - name: devAccessKey
+      value: dstQtrU8tuNi0OeLJSyzKiNPcKUemxeA
 
 package:
   exclude:
@@ -23,9 +28,10 @@ functions:
     memorySize: 2048
     timeout: 24
     events:
-      - httpApi:
+      - http:
           method: POST
           path: /img/k1006
+          private: true
           cors: true
 
 custom:

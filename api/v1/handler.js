@@ -20,6 +20,8 @@ module.exports.k1006 = async event => {
 
   // Getting image from request body
   try {
+    var bodyID = JSON.stringify(JSON.parse(event.body).id);
+    if (!bodyID) {bodyID = ''}
     var base64 = JSON.stringify(JSON.parse(event.body).data.image);
     base64 = base64.replace(/data:image\/(png|jpg|jpeg|gif);base64,/, '');
     console.log('Recieved the base 64 image.');
@@ -61,6 +63,7 @@ module.exports.k1006 = async event => {
   // ['sk-eisen-nickel', 'nachverzinnt', 'sk-kupfer']
   // Returning data on completion
   return Response._200({
+    "id": bodyID.replace(/(^"|"$)/g, ''),
     "data": {
       "sk-eisen-nickel": prediction[0],
       "nachverzinnt": prediction[1],
