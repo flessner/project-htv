@@ -58,9 +58,14 @@ module.exports.k1006 = async event => {
     return Response._500({"message": "The model failed to predict the values."});
   }
 
+  // ['sk-eisen-nickel', 'nachverzinnt', 'sk-kupfer']
   // Returning data on completion
   return Response._200({
     "message": "This is it!",
-    "data": {}
+    "data": {
+      "sk-eisen-nickel": prediction[0],
+      "sk-kupfer": prediction[2],
+      "nachverzinnt": prediction[1]
+    }
   });
 }

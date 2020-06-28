@@ -26,130 +26,155 @@ _503 UNAVAILABLE            Mainly used for a currently unavailable Server, pote
 _504 GATEWAY_TIMEOUT        The Server, while working as a Gateway couldn't get a response in time.
 */
 
+const commonHeader = {
+    "content-type": "application/json"
+}
+
 module.exports = {
     _100(data = {}){
         return {
             statusCode: 100,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _200(data = {}){
         return {
             statusCode: 200,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _201(data = {}){
         return {
             statusCode: 201,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _202(data = {}){
         return {
             statusCode: 202,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _300(data = {}){
         return {
             statusCode: 300,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _301(data = {}){
         return {
             statusCode: 301,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _302(data = {}){
         return {
             statusCode: 302,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _400(data = {}){
         return {
             statusCode: 400,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _401(data = {}){
         return {
             statusCode: 401,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _403(data = {}){
         return {
             statusCode: 403,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _404(data = {}){
         return {
             statusCode: 404,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _405(data = {}){
         return {
             statusCode: 405,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _408(data = {}){
         return {
             statusCode: 408,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _410(data = {}){
         return {
             statusCode: 410,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _426(data = {}){
         return {
             statusCode: 426,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _429(data = {}){
         return {
             statusCode: 429,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _500(data = {}){
         return {
             statusCode: 500,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _501(data = {}){
         return {
             statusCode: 501,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _502(data = {}){
         return {
             statusCode: 502,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _503(data = {}){
         return {
             statusCode: 503,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
     _504(data = {}){
         return {
             statusCode: 504,
+            headers: commonHeader,
             body: JSON.stringify(data)
         };
     },
