@@ -20,7 +20,7 @@ package:
 functions:
   k1006:
     handler: handler.k1006
-    memorySize: 3008
+    memorySize: 2048
     timeout: 24
     events:
       - httpApi:
