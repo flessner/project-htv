@@ -61,11 +61,10 @@ module.exports.k1006 = async event => {
   // ['sk-eisen-nickel', 'nachverzinnt', 'sk-kupfer']
   // Returning data on completion
   return Response._200({
-    "message": "This is it!",
     "data": {
       "sk-eisen-nickel": prediction[0],
-      "sk-kupfer": prediction[2],
-      "nachverzinnt": prediction[1]
+      "nachverzinnt": prediction[1],
+      "sk-kupfer": prediction[2]
     }
   });
 }
