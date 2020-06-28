@@ -44,10 +44,10 @@ y = np.array(train.drop(['Id'],axis=1))
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.1)
 
 model = Sequential()
-model.add(Conv2D(filters=10, kernel_size=(10, 10), activation="relu", input_shape=(400,400,3)))
+model.add(Conv2D(filters=16, kernel_size=(10, 10), activation="relu", input_shape=(400,400,3)))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.1))
-model.add(Conv2D(filters=20, kernel_size=(10, 10), activation='relu'))
+model.add(Conv2D(filters=16, kernel_size=(10, 10), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.1))
 model.add(Flatten())
@@ -57,8 +57,8 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(3, activation='sigmoid'))
 
-model.compile(optimizer='RMSprop', loss='binary_crossentropy', metrics=['accuracy'])
-model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test), batch_size=64)
+model.compile(optimizer='Adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), batch_size=64)
 
 print('Saving model')
 model_save_dir = './save/k1006'
