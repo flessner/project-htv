@@ -20,8 +20,8 @@ package:
 functions:
   k1006:
     handler: handler.k1006
-    memorySize: 2048
-    timeout: 16
+    memorySize: 3008
+    timeout: 24
     events:
       - httpApi:
           method: POST

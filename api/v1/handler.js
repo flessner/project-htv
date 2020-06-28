@@ -9,8 +9,10 @@ module.exports.k1006 = async event => {
 
   // Getting model from S3 & initializing it.
   try {
-    var model = await tf.loadLayersModel(process.env.S3_MODELS_URL);
-    console.log('Model was successfully initialized!');
+    if(model == undefined) {
+      var model = await tf.loadLayersModel(process.env.S3_MODELS_URL);
+      console.log('Model was successfully initialized!');
+    }
   } catch(e) {
     console.error(e);
     return Response._500({"message": "Failed to download the model!"});
@@ -37,6 +39,7 @@ module.exports.k1006 = async event => {
     });;
     var tfImage = await pixels(jimpImage.getBase64Async(Jimp.MIME_JPEG), {height: '400', width: '400'});
     tfImage = tf.browser.fromPixels(tfImage);
+    tfImage = tfImage.expandDims();
     console.log('The image was transformed into a tensor.');
   } catch(e) {
     console.error(e)
@@ -46,7 +49,10 @@ module.exports.k1006 = async event => {
   // Making the actual prediction
   try {
     var prediction = model.predict(tfImage);
-    prediction.print();
+    prediction = prediction.toFloat();
+    prediction = prediction.dataSync();
+    console.log(prediction);
+    console.log('The prediction has been made.')
   } catch(e) {
     console.error(e)
     return Response._500({"message": "The model failed to predict the values."});

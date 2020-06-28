@@ -34,6 +34,7 @@ except:
 train_image = []
 for i in tqdm(range(train.shape[0])):
     img = image.load_img(data_loc + '(' + str(int(train['Id'][i])) + ').jpg', target_size=(400,400,3))
+    img = img.convert('RGB')
     img = image.img_to_array(img)
     img = img/255
     train_image.append(img)
@@ -43,13 +44,15 @@ y = np.array(train.drop(['Id'],axis=1))
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.1)
 
 model = Sequential()
-model.add(Conv2D(filters=16, kernel_size=(10, 10), activation="relu", input_shape=(400,400,3)))
+model.add(Conv2D(filters=16, kernel_size=(8, 8), activation="relu", input_shape=(400,400,3)))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.15))
-model.add(Conv2D(filters=32, kernel_size=(10, 10), activation='relu'))
+model.add(Conv2D(filters=16, kernel_size=(8, 8), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.15))
 model.add(Flatten())
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.35))
 model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.35))
 model.add(Dense(64, activation='relu'))
