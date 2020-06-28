@@ -1,6 +1,8 @@
 <script>
     import { url } from '@sveltech/routify'
     import { api_key } from './../_store'
+    
+    api_key.useLocalStorage();
 </script>
 
 <div class='footer-login'>

@@ -32,7 +32,9 @@ functions:
           method: POST
           path: /img/k1006
           private: true
-          cors: true
+          cors:
+            origins: https://*.flessner.io
+            allowCredentials: true
 
 custom:
   vars:

@@ -27,7 +27,7 @@ _504 GATEWAY_TIMEOUT        The Server, while working as a Gateway couldn't get 
 */
 
 const commonHeader = {
-    "content-type": "application/json"
+    "Content-Type": "application/json"
 }
 
 module.exports = {
