@@ -31,7 +31,7 @@ functions:
   k1006:
     handler: handler.k1006
     memorySize: 3008
-    timeout: 24
+    timeout: 12
     events:
       - http:
           method: POST
