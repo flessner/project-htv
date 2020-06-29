@@ -27,7 +27,9 @@ _504 GATEWAY_TIMEOUT        The Server, while working as a Gateway couldn't get 
 */
 
 const commonHeader = {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "https://htv.flessner.io",
+    "Access-Control-Allow-Credentials": true
 }
 
 module.exports = {
