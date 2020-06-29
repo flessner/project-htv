@@ -8,6 +8,7 @@
     let files;
     let image_queue = [];
     let api_results = [];
+    let timed_out_results = 0;
 
     function setFiles() {
         image_queue = [];
@@ -34,11 +35,20 @@
                     }
                 })
             })
-            .then((response) => { 
+            .then(response => { 
                 response.json().then((body) => {
                     console.log(body.data);
                     api_results.push(body);
-                    addResult(body);
+                    try {
+                        addResult(body, response.status);
+                    } catch(e) {
+                        if (timed_out_results < 3) {
+                            addResult(undefined, 403);
+                            timed_out_results = 0;
+                        } else {
+                            addResult(undefined, 502);
+                        }
+                    }
                 })
             });
         }
@@ -61,21 +71,33 @@
     function clearResults() {
         image_queue = [];
         api_results = [];
+        timed_out_results = 0;
         document.getElementById("predictions").innerHTML = '<th style="width: 200px;">NAME</th><th style="width: 200px;">EISEN NICKEL</th><th style="width: 200px;">KUPFER</th><th style="width: 200px;">NACHVERZINNT</th>';
         console.log('Results cleared')
     }
 
-    function addResult(body) {
-        let eisen_nickel = body.data['sk-eisen-nickel'];
-        let kupfer = body.data['sk-kupfer'];
-        let nachverzinnt = body.data['nachverzinnt'];
+    function addResult(body, code) {
+        if (body) {
+            let eisen_nickel = body.data['sk-eisen-nickel'];
+            let kupfer = body.data['sk-kupfer'];
+            let nachverzinnt = body.data['nachverzinnt'];
 
-        if (eisen_nickel == 1) {eisen_nickel = 'X'} else {eisen_nickel = eisen_nickel.toFixed(2)}
-        if (kupfer == 1) {kupfer = 'X'}       else {kupfer = kupfer.toFixed(2)}
-        if (nachverzinnt == 1) {nachverzinnt = 'X'} else {nachverzinnt = nachverzinnt.toFixed(2)}
-        let name = body.id; 
+            if (eisen_nickel == 1) {eisen_nickel = 'X'} else {eisen_nickel = eisen_nickel.toFixed(2)}
+            if (kupfer == 1) {kupfer = 'X'}       else {kupfer = kupfer.toFixed(2)}
+            if (nachverzinnt == 1) {nachverzinnt = 'X'} else {nachverzinnt = nachverzinnt.toFixed(2)}
+            let name = body.id; 
 
-        document.getElementById("predictions").innerHTML += '<tr><th>' + name + '</th><td style="text-align: center;">' + eisen_nickel + '</td><td style="text-align: center;">' + kupfer + '</td><td style="text-align: center;">' + nachverzinnt + '</td><tr>';
+            document.getElementById("predictions").innerHTML += '<tr><th>' + name + '</th><td style="text-align: center;">' + eisen_nickel + '</td><td style="text-align: center;">' + kupfer + '</td><td style="text-align: center;">' + nachverzinnt + '</td><tr>';
+            timed_out_results += 1;
+        } else {
+            if (code == 403) {
+                document.getElementById("predictions").innerHTML += '<tr><th>' + code + '</th><td style="text-align: center;">' + 'ERROR' + '</td><th style="text-align: center;">' + 'UNAUTHORIZED' + '</th><td style="text-align: center;">' + 'ERROR' + '</td><tr>';
+            } else if (code == 502) {
+                document.getElementById("predictions").innerHTML += '<tr><th>' + code + '</th><td style="text-align: center;">' + 'ERROR' + '</td><th style="text-align: center;">' + 'BAD GATEWAY' + '</th><td style="text-align: center;">' + 'ERROR' + '</td><tr>';
+            } else {
+                document.getElementById("predictions").innerHTML += '<tr><th>' + code + '</th><td style="text-align: center;">' + 'ERROR' + '</td><td style="text-align: center;">' + 'ERROR' + '</td><td style="text-align: center;">' + 'ERROR' + '</td><tr>';
+            }
+        }
     }
 </script>
 
