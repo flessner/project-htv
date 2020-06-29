@@ -7,11 +7,6 @@ provider:
   stage: prod
   runtime: nodejs12.x
   region: eu-west-1
-  http:
-    cors:
-      allowedOrigins:
-        - https://flessner.io
-      allowCredentials: true
   environment:
     S3_MODELS: ${self:custom.vars.s3-model}
     S3_MODELS_URL: https://${self:custom.vars.s3-model}.s3-eu-west-1.amazonaws.com/v1/k1006/model.json
@@ -37,6 +32,10 @@ functions:
           method: POST
           path: /img/k1006
           private: true
+          cors:
+            allowedOrigins:
+              - https://flessner.io
+            allowCredentials: true
 
 custom:
   vars:
