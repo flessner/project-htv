@@ -6,13 +6,16 @@ const pixels = require('image-pixels');
 
 module.exports.k1006 = async event => {
   console.log('Starting execution...');
+  var base64 = '';
+  var bodyID = '';
+  var jimpImage = '';
+  var tfImage = '';
+  var prediction = '';
 
   // Getting model from S3 & initializing it.
   try {
-    if(model == undefined) {
-      var model = await tf.loadLayersModel(process.env.S3_MODELS_URL);
-      console.log('Model was successfully initialized!');
-    }
+    var model = await tf.loadLayersModel(process.env.S3_MODELS_URL);
+    console.log('Model was successfully initialized!');
   } catch(e) {
     console.error(e);
     return Response._500({"message": "Failed to download the model!"});
