@@ -1,7 +1,7 @@
 # Project "HTV"
 
 This was a student project I wrote around 2019-2020 for a local
-semiconductor testing company called HTV in Bensheim.
+semiconductor testing company [HTV GmbH](https://www.htv-gmbh.de/) in Bensheim.
 
 The project consists of an [AWS Lambda](https://aws.amazon.com/pm/lambda/) function hosting a ML image classification model, classifying 3 different image "types" (Eisen-Nickel, Nachverzinnt, Kupfer). The model was trained with [Tensorflow](https://www.tensorflow.org/) in Python, however, it was served with JavaScript.
 
@@ -20,6 +20,6 @@ The project is no longer online today and was never put into production, this se
 
 ## Assets
 ![Overview](/assets/overview.png)
-![AWS Lambda GUI](/assets/aws-lambda-gui.JPG)
+![AWS Lambda GUI](/assets/aws-lambda-gui.jpg)
 ![Severless Framework Execution](/assets/serverless-exec.jpg)
 
