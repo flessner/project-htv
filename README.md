@@ -5,11 +5,11 @@ semiconductor testing company [HTV GmbH](https://www.htv-gmbh.de/) in Bensheim.
 
 The project consists of an [AWS Lambda](https://aws.amazon.com/pm/lambda/) function hosting a ML image classification model, classifying 3 different image "types" (Eisen-Nickel, Nachverzinnt, Kupfer). The model was trained with [Tensorflow](https://www.tensorflow.org/) in Python, however, it was served with JavaScript.
 
-The project is no longer online today and was never put into production, this serves solely as a reference.
+This project was solely meant as a "prototype" and was never put into production.
 
 ## Structure
 - `/api`: [AWS Lambda](https://aws.amazon.com/pm/lambda/) function hosting the model.
-- `/site`: [Svelte](https://svelte.dev/) frontend, uses [Routify](https://routify.dev/).
+- `/site`: [Svelte](https://svelte.dev/) frontend website, uses [Routify](https://routify.dev/).
 - `/assets`: Images, pictures and materials.
 
 ## Reflections (2025)
